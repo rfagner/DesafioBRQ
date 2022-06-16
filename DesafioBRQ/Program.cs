@@ -12,9 +12,94 @@ namespace DesafioBRQ
             string sexo;
             int idade;
             double altura, peso;
+            bool validacao = false;
 
 
             // Apresentação do programa para o usuário
+            Apresentacao();
+
+            // Entrada dos dados
+            // Solicita o nome do usuário
+            do
+            {
+                Console.Write("Qual é o seu nome: ");
+                nome = Console.ReadLine();
+
+                if (nome.Trim() == "")
+                {
+                    Console.WriteLine("É necessário informar um nome!");
+                    validacao = false;
+                }
+                else
+                {
+                    validacao = true;
+                }
+            } while (validacao == false);
+            
+            // Solicita a informação do sexo do usuário
+            do
+            {
+                Console.Write("Qual é o seu sexo (M/F): ");
+                sexo = Console.ReadLine();
+                // Valida o campo sexo
+                if (sexo.ToLower() == "m")
+                {
+                    sexo = "Masculino";
+                    validacao = true;
+                }
+                else if (sexo.ToLower() == "f")
+                {
+                    sexo = "Feminino";
+                    validacao = true;
+                }
+                else
+                {
+                    Console.WriteLine("Insira apenas 'M' para Masculino e 'F' para Feminino.");
+                }
+            } while (validacao == false);
+
+            // Solicita a idade do usuário
+            do
+            {
+                Console.Write("Qual é a sua idade: ");
+                int.TryParse(Console.ReadLine(), out idade);
+
+                if (idade > 0 && idade <= 150)
+                {
+                    validacao = true;
+                }
+                else if (idade > 150)
+                {
+                    Console.WriteLine("Cara, somente Abraão viveu mais que 150 anos!");
+                    validacao = false;
+                }
+                else if (idade == 0)
+                {
+                    Console.WriteLine("Digite apenas núneros positivos!");
+                    validacao = false;
+                }
+                else
+                {
+                    Console.WriteLine("Não exixte ninguém com idade negativa");
+                }
+            } while (validacao == false);
+
+            // Solicita a altura em metros do usuário
+            Console.Write("Digite a sua altura: ");
+            double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura);
+
+            // Solicita o peso do usuário
+            Console.Write("Digite seu peso: ");
+            double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out peso);
+
+            double totalIMC = CalculoIMC(peso, altura);
+
+            // Apresentação do Diagnóstico
+            Diagnostico(nome, sexo, idade, altura, peso, totalIMC);
+        }
+
+        static void Apresentacao()
+        {
             Console.WriteLine("****************************************************************");
             Console.WriteLine("************   Programa de Emagrecimento Saudável   ************");
             Console.WriteLine("*                                                              *");
@@ -25,23 +110,10 @@ namespace DesafioBRQ
             Console.WriteLine("");
             Console.WriteLine("Por favor, insira seus dados abaixo: ");
             Console.WriteLine("");
+        }
 
-            // Entrada dos dados
-            Console.Write("Qual é o seu nome: ");
-            nome = Console.ReadLine();
-
-            Console.Write("Qual é o seu sexo (M/F): ");
-            sexo = Console.ReadLine();
-
-            Console.Write("Qual é a sua idade: ");
-            idade = int.Parse(Console.ReadLine());
-
-            Console.Write("Digite a sua altura: ");
-            altura = double.Parse(Console.ReadLine(), CultureInfo.GetCultureInfo("pt-br"));
-
-            Console.Write("Digite seu peso: ");
-            peso = double.Parse(Console.ReadLine(), CultureInfo.GetCultureInfo("pt-br"));
-            double totalIMC = CalculoIMC(peso, altura);
+        static void Diagnostico(string nome, string sexo, int idade, double altura, double peso, double totalIMC)
+        {
             Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("DIAGNÓSTICO PRÉVIO");
@@ -61,12 +133,15 @@ namespace DesafioBRQ
             Console.WriteLine($"Riscos: {ClassificarRiscos(totalIMC)}");
             Console.WriteLine("");
             Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}");
-            Console.ReadKey();
+            Console.WriteLine("");
+            Console.ReadKey();            
+
         }
 
+        // Função que retorna a categoria que recebe por parâmetro a idade do usuário
         static string Categoria(int idadePessoa)
         {
-            // Função que retorna a categoria que recebe por parâmetro a idade do usuário
+
             if (idadePessoa < 12)
             {
                 return "Infantil";
@@ -85,7 +160,7 @@ namespace DesafioBRQ
             }
         }
 
-        #region Calculo do IMC
+
         static double CalculoIMC(double pesoPessoa, double alturaPessoa)
         {
             // Função que calcula o IMC e que recebe por parâmetro o peso e a idade do usuário
@@ -93,7 +168,7 @@ namespace DesafioBRQ
             return resultadoIMC;
         }
 
-        #endregion
+
 
         static string ClassificacaoIMC(double classificacaoIMC)
         {
@@ -125,7 +200,7 @@ namespace DesafioBRQ
             // Função que retorna a Classificação de Risco que recebe por parâmetro o total do IMC
             if (riscosIMC < 20)
             {
-                return "Muitas complicações de saúde como doenças pulmonares e cardiovasculares podem estar associadas ao baixo peso.";
+                return "Muitas complicações de saúde como doenças pulmonares e cardiovasculares podem estar\n associadas ao baixo peso.";
             }
             else if (riscosIMC >= 20 && riscosIMC <= 24)
             {
@@ -150,7 +225,7 @@ namespace DesafioBRQ
             // Função que retorna a Recomendação Inicial que recebe por parâmetro o total do IMC
             if (recomendacaoIMC < 20)
             {
-                return "Inclua carboidratos simples em sua dieta, além de proteínas - indispensáveis para ganho de massa magra. Procure um profissional .";
+                return "Inclua carboidratos simples em sua dieta, além de proteínas - indispensáveis para ganho de massa magra.\n Procure um profissional .";
             }
             else if (recomendacaoIMC >= 20 && recomendacaoIMC <= 24)
             {
@@ -158,15 +233,15 @@ namespace DesafioBRQ
             }
             else if (recomendacaoIMC >= 25 && recomendacaoIMC <= 29)
             {
-                return "Adote um tratamento baseado em dieta balanceada, exercício físico e medicação. A ajuda de um profissional pode ser interessante";
+                return "Adote um tratamento baseado em dieta balanceada, exercício físico e medicação. \nA ajuda de um profissional pode ser interessante";
             }
             else if (recomendacaoIMC >= 30 && recomendacaoIMC <= 35)
             {
-                return "Adote uma dieta alimentar rigorosa, com o acompanhamento de um nutricionista e um médico especialista (endócrino).";
+                return "Adote uma dieta alimentar rigorosa, com o acompanhamento de um nutricionista \ne um médico especialista (endócrino).";
             }
             else
             {
-                return "Procure com urgência o acompanhamento de um nutricionista para realizar reeducação alimentar, um psicólogo e um médico especialista endócrino).";
+                return "Procure com urgência o acompanhamento de um nutricionista para realizar reeducação alimentar, \num psicólogo e um médico especialista endócrino.";
             }
         }
 
