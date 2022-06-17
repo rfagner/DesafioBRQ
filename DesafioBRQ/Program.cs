@@ -13,9 +13,8 @@ namespace DesafioBRQ
             string sexo;
             int idade;
             double altura, peso;
-            bool validaNome = false;
-            bool validaSexo = false;
-            bool validaIdade = false;
+
+
 
             #endregion
 
@@ -23,78 +22,73 @@ namespace DesafioBRQ
             Apresentacao();
 
             #region Entrada de Dados
-            
+
             // Solicita o nome do usuário
-            do
+
+            Console.Write("Digite o seu nome: ");
+            nome = Console.ReadLine();
+
+            while (string.IsNullOrWhiteSpace(nome))
             {
-                Console.Write("Por favor, digite o seu nome: ");
+                Console.WriteLine("\nEssa etapa é muito importante para te conhecermos e não pode ficar em branco!\n");
+                Console.Write("\nPor favor, digite o seu nome: ");
                 nome = Console.ReadLine();
-                // Valida o nome do usuário
-                if (string.IsNullOrEmpty(nome))
-                {                    
-                    Console.WriteLine("\nEssa etapa é muito importante para te conhecermos e não pode ficar em branco!\n");
-                    validaNome = false;
-                }
-                else
-                {
-                    validaNome = true;
-                }
-            } while (validaNome == false);
+            }
+
 
             // Solicita a informação do sexo do usuário
-            
-            do
-            {
-                Console.Write("\nQual é o seu sexo (M/F): ");
-                sexo = Console.ReadLine();
-                // Valida o campo sexo
-                if (sexo.ToLower() == "m")
-                {
-                    sexo = "Masculino";
-                    validaSexo = true;
-                }
-                else if (sexo.ToLower() == "f")
-                {
-                    sexo = "Feminino";
-                    validaSexo = true;
-                }
-                else
-                {                    
-                    Console.WriteLine("\nInsira apenas 'M' para Masculino e 'F' para Feminino.");
-                }
-            } while (validaSexo == false);
+
+            Console.Write("\nQual é o seu sexo (M/F): ");
+            sexo = Console.ReadLine();
+            // Valida o campo sexo          
+                       
+
 
             // Solicita a idade do usuário
+
+
             do
             {
-                Console.Write("\nQual é a sua idade: ");
-                int.TryParse(Console.ReadLine(), out idade);
-
-                if (idade > 0 && idade <= 150)
+                Console.Write("\nDigite sua idade: ");
+                if (int.TryParse(Console.ReadLine(), out idade))
                 {
-                    validaIdade = true;
-                }
-                else if (idade > 150)
-                {
-                    
-                    Console.WriteLine("\nSegundo o Guinness Book, a pessoa mais velha do mundo morreu aos 119 anos de idade.");
-                    Console.WriteLine($"\nCom certeza você não que tem {idade} anos!");
-                    validaIdade = false;
-                }
-                else if (idade == 0)
-                {
-                    Console.WriteLine("\nDigite apenas núneros positivos!");
-                    validaIdade = false;
+                    if (idade <= 0)
+                    {
+                        Console.WriteLine("\nNão existe pessoas com idade negativas!");
+                    }
+                    if (idade > 120)
+                    {
+                        Console.WriteLine("\nSua idade está acima do normal!");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("\nNão existe ninguém com idade negativa!");
+                    Console.WriteLine("Digite apenas números inteiros!");
                 }
-            } while (validaIdade == false);
+
+            } while (idade <= 0 || idade > 120);
+
 
             // Solicita a altura em metros do usuário
-            Console.Write("\nDigite a sua altura: ");
-            double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura);
+            do
+            {
+                Console.Write("\nDigite a sua altura: ");
+                if (double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura))
+                {
+                    if (altura <= 0)
+                    {
+                        Console.WriteLine("\nNão existe pessoas com altura negativa!");
+                    }
+                    if (altura > 3.0)
+                    {
+                        Console.WriteLine("\nSua altura está acima do normal!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\nDigite apenas números inteiros!");
+                }
+            } while (altura <= 0 || altura > 3.0);
 
             // Solicita o peso do usuário
             Console.Write("\nDigite seu peso: ");
@@ -116,37 +110,37 @@ namespace DesafioBRQ
             Console.WriteLine("*   Sistema que oferece um diagnóstico prévio baseado no IMC   *");
             Console.WriteLine("*                                                              *");
             Console.WriteLine("************    (IMC - Índice de Massa Corpórea)    ************");
-            Console.WriteLine("****************************************************************\n");            
-            Console.WriteLine("Para começar, vamos precisar de algumas informações.\n");            
-            Console.WriteLine("Pode ficar tranquilo(a), trataremos os seus dados de acordo com a LGPD\n");            
+            Console.WriteLine("****************************************************************\n");
+            Console.WriteLine("Para começar, vamos precisar de algumas informações.\n");
+            Console.WriteLine("Pode ficar tranquilo(a), trataremos os seus dados de acordo com a LGPD\n");
             Console.WriteLine("Lei Geral de Proteção de Dados · Lei nº 13.853, de 8 de julho de 2019\n\n");
-            
+
         }
 
         static void Diagnostico(string nome, string sexo, int idade, double altura, double peso, double totalIMC)
         {
             Console.Clear();
             Console.WriteLine("");
-            Console.WriteLine("DIAGNÓSTICO PRÉVIO\n");            
+            Console.WriteLine("DIAGNÓSTICO PRÉVIO\n");
             Console.WriteLine($"Nome: {nome}");
             Console.WriteLine($"Sexo: {sexo}");
             Console.WriteLine($"Idade: {idade}");
             Console.WriteLine($"Altura: {altura}");
             Console.WriteLine($"Peso: {peso}");
-            Console.WriteLine($"Categoria: {Categoria(idade)}\n\n");            
-            Console.WriteLine($"IMC Desejável: {ClassificacaoIMC(totalIMC)}\n");            
-            Console.WriteLine($"Resultado IMC: {totalIMC.ToString("F2", CultureInfo.GetCultureInfo("pt-br"))}\n");            
-            Console.WriteLine($"Riscos: {ClassificarRiscos(totalIMC)}\n");            
+            Console.WriteLine($"Categoria: {Categoria(idade)}\n\n");
+            Console.WriteLine($"IMC Desejável: {ClassificacaoIMC(totalIMC)}\n");
+            Console.WriteLine($"Resultado IMC: {totalIMC.ToString("F2", CultureInfo.GetCultureInfo("pt-br"))}\n");
+            Console.WriteLine($"Riscos: {ClassificarRiscos(totalIMC)}\n");
             Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");
-            
-            Console.ReadKey();            
+
+            Console.ReadKey();
 
         }
 
         // Função que retorna a categoria que recebe por parâmetro a idade do usuário
         static string Categoria(int idadePessoa)
         {
-            
+
             if (idadePessoa < 12)
             {
                 return "Infantil";
@@ -181,7 +175,7 @@ namespace DesafioBRQ
         static string ClassificacaoIMC(double classificacaoIMC)
         {
             // Função que retorna a classificação do IMC que recebe por parâmetro o total do IMC
-            
+
             if (classificacaoIMC < 20)
             {
                 return "abaixo de 20";
