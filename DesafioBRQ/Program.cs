@@ -39,9 +39,25 @@ namespace DesafioBRQ
             // Solicita a informação do sexo do usuário
 
             Console.Write("\nQual é o seu sexo (M/F): ");
-            sexo = Console.ReadLine();
+            sexo = Console.ReadLine();                      
             // Valida o campo sexo          
-                       
+            while(sexo.ToLower() != "m" || sexo.ToLower() != "f" )
+            {                
+
+                if(sexo.ToLower() == "m")
+                {
+                    sexo = "Masculino";
+                    break;
+                }
+                if(sexo.ToLower() == "f")
+                {
+                    sexo = "Feminino";
+                    break;
+                }
+                Console.WriteLine("\nDados inválidos. Apenas são aceitos os caracteres 'M' e 'F'");
+                Console.Write("\nQual é o seu sexo (M/F): ");
+                sexo = Console.ReadLine();
+            }        
 
 
             // Solicita a idade do usuário
@@ -56,20 +72,22 @@ namespace DesafioBRQ
                     {
                         Console.WriteLine("\nNão existe pessoas com idade negativas!");
                     }
-                    if (idade > 120)
+                    if (idade > 119)
                     {
-                        Console.WriteLine("\nSua idade está acima do normal!");
+                        Console.WriteLine($"\nCom certeza você não tem {idade} anos!");
+                        Console.WriteLine("A pessoa mais velha do mundo, era a japonesa Kane Tanaka, de 119 anos.");
+                        Console.WriteLine("##Fonte Guinnes Book");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Digite apenas números inteiros!");
+                    Console.WriteLine("\nDados inválidos! Digite apenas números inteiros!");
                 }
 
-            } while (idade <= 0 || idade > 120);
+            } while (idade <= 0 || idade > 119);
 
 
-            // Solicita a altura em metros do usuário
+            // Solicita a altura do usuário
             do
             {
                 Console.Write("\nDigite a sua altura: ");
@@ -79,21 +97,41 @@ namespace DesafioBRQ
                     {
                         Console.WriteLine("\nNão existe pessoas com altura negativa!");
                     }
-                    if (altura > 3.0)
+                    if (altura > 2.51)
                     {
-                        Console.WriteLine("\nSua altura está acima do normal!");
+                        Console.WriteLine($"\nCom certeza você não tem {altura} de altura!");
+                        Console.WriteLine("O homem vivo mais alto do mundo, Sultan Kösen, da Túrquia, tem 2,51 metros de altura.");
+                        Console.WriteLine("##Fonte Guinnes Book");
                     }
                 }
                 else
                 {
                     Console.WriteLine("\nDigite apenas números inteiros!");
                 }
-            } while (altura <= 0 || altura > 3.0);
+            } while (altura <= 0 || altura > 2.51);
 
             // Solicita o peso do usuário
-            Console.Write("\nDigite seu peso: ");
-            double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out peso);
-
+            do
+            {
+                Console.Write("\nDigite seu peso: ");
+                if (double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out peso))
+                {
+                    if (peso <= 0)
+                    {
+                        Console.WriteLine("\nNão existe pessoas com peso negativo!");
+                    }
+                    if (peso > 595.0)
+                    {
+                        Console.WriteLine($"\nCom certeza você não tem {peso} kg!");
+                        Console.WriteLine("O homem mais pesado do mundo - o mexicano Juan Pedro Franco - chegou a ter 595 quilos");
+                        Console.WriteLine("##Fonte Guinnes Book");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\nDados inválidos. Digite apenas números reais!");
+                }
+            } while (peso <= 0 || peso > 595.0);
             #endregion
 
             double totalIMC = CalculoIMC(peso, altura);
@@ -125,7 +163,7 @@ namespace DesafioBRQ
             Console.WriteLine($"Nome: {nome}");
             Console.WriteLine($"Sexo: {sexo}");
             Console.WriteLine($"Idade: {idade}");
-            Console.WriteLine($"Altura: {altura}");
+            Console.WriteLine($"Altura: {altura.ToString("F2")}");
             Console.WriteLine($"Peso: {peso}");
             Console.WriteLine($"Categoria: {Categoria(idade)}\n\n");
             Console.WriteLine($"IMC Desejável: {ClassificacaoIMC(totalIMC)}\n");
