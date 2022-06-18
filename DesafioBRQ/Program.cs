@@ -13,66 +13,65 @@ namespace DesafioBRQ
             string sexo;
             int idade;
             double altura, peso;
-
-
-
             #endregion
 
-            // Apresentação do programa para o usuário
+            // Chamada da função que apresenta o programa para o usuário
             Apresentacao();
 
             #region Entrada de Dados
-
             // Solicita o nome do usuário
-
             Console.Write("Digite o seu nome: ");
             nome = Console.ReadLine();
 
+            // Validação que verifica se a string especificada é null ou consiste somente de espaço em branco
+            // Isso garante que o campo "Nome" não pode estar em branco
             while (string.IsNullOrWhiteSpace(nome))
             {
+                // Mensagem que será retornada ao usuário enquanto o teste condicional for igual a verdadeiro (true) 
+                Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
                 Console.WriteLine("\nEssa etapa é muito importante para te conhecermos e não pode ficar em branco!\n");
                 Console.Write("\nPor favor, digite o seu nome: ");
                 nome = Console.ReadLine();
             }
 
 
-            // Solicita a informação do sexo do usuário
-
+            // Solicita a informação do sexo da pessoa
             Console.Write("\nQual é o seu sexo (M/F): ");
-            sexo = Console.ReadLine();                      
-            // Valida o campo sexo          
-            while(sexo.ToLower() != "m" || sexo.ToLower() != "f" )
-            {                
+            sexo = Console.ReadLine();
+            // Após receber o sexo da pessoa o teste condicional verifica se é um sexo válido.        
+            while (sexo.ToLower() != "m" || sexo.ToLower() != "f")
+            {
 
-                if(sexo.ToLower() == "m")
+                if (sexo.ToLower() == "m") // Verifica a entrada e converte a string para minúsculo
                 {
                     sexo = "Masculino";
-                    break;
+                    break; // Comando que interrompe o laço assim que a condição desejada é atendida
                 }
-                if(sexo.ToLower() == "f")
+                if (sexo.ToLower() == "f")
                 {
                     sexo = "Feminino";
                     break;
                 }
-                Console.WriteLine("\nDados inválidos. Apenas são aceitos os caracteres 'M' e 'F'");
+                // Mensagem que será retornada ao usuário enquanto o teste condicional for igual a verdadeiro (true) 
+                Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
+                Console.WriteLine("\nDados inválidos. Apenas são aceitos os caracteres 'M' para 'Masculino' e 'F' para 'Feminino'.");
                 Console.Write("\nQual é o seu sexo (M/F): ");
                 sexo = Console.ReadLine();
-            }        
-
-
-            // Solicita a idade do usuário
+            }
 
 
             do
             {
-                Console.Write("\nDigite sua idade: ");
+                // Solicita a idade da pessoa e verifica se é um valor inteiro válido (positivo e sem casas decimais).
+                Console.Write("\nDigite sua idade (Ex. 28): ");
                 if (int.TryParse(Console.ReadLine(), out idade))
                 {
+                    // Verifica se o valor é negativo considerando o zero
                     if (idade <= 0)
                     {
                         Console.WriteLine("\nNão existe pessoas com idade negativas!");
                     }
-                    if (idade > 119)
+                    if (idade > 119) // Verifica se o valor é superior ao valor do teste condicional
                     {
                         Console.WriteLine($"\nCom certeza você não tem {idade} anos!");
                         Console.WriteLine("A pessoa mais velha do mundo, era a japonesa Kane Tanaka, de 119 anos.");
@@ -81,23 +80,30 @@ namespace DesafioBRQ
                 }
                 else
                 {
-                    Console.WriteLine("\nDados inválidos! Digite apenas números inteiros!");
+                    // Mesagem que será retornada ao usuário caso os dados sejam inválidos
+                    Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
+                    Console.WriteLine("\nDados inválidos! Digite apenas números inteiros e sem casas decimais!");
                 }
 
-            } while (idade <= 0 || idade > 119);
+            } while (idade <= 0 || idade > 119); // O programa só sairá do laço quando a condição for atendida
 
 
-            // Solicita a altura do usuário
+
             do
             {
-                Console.Write("\nDigite a sua altura: ");
+                // Solicita a altura da pessoa
+
+                Console.Write("\nDigite a sua altura (Ex. 1,70): ");
+                // Condição que verifica se o valor contém ponto ou vírgula e retorna um double para a variável altura
+                // e verifica se a altura é válida. 
                 if (double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura))
                 {
+                    // Verifica se o valor é negativo considerando o zero
                     if (altura <= 0)
                     {
                         Console.WriteLine("\nNão existe pessoas com altura negativa!");
                     }
-                    if (altura > 2.51)
+                    if (altura > 2.51) // Verifica se o valor é superior ao valor do teste condicional
                     {
                         Console.WriteLine($"\nCom certeza você não tem {altura} de altura!");
                         Console.WriteLine("O homem vivo mais alto do mundo, Sultan Kösen, da Túrquia, tem 2,51 metros de altura.");
@@ -106,21 +112,27 @@ namespace DesafioBRQ
                 }
                 else
                 {
-                    Console.WriteLine("\nDigite apenas números inteiros!");
+                    // Caso seja um valor negativo, letra ou espaço em branco será retornado ao usuário que digite apenas números naturais
+                    Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
+                    Console.WriteLine("\nDigite apenas números naturais!");
                 }
-            } while (altura <= 0 || altura > 2.51);
+            } while (altura <= 0 || altura > 2.51); // O programa só sairá do laço quando a condição for atendida
 
             // Solicita o peso do usuário
             do
             {
-                Console.Write("\nDigite seu peso: ");
+                // Solicita o peso do usuário
+                Console.Write("\nDigite seu peso (Ex. 54,5): ");
+                // Condição que verifica se o valor contém ponto ou vírgula e retorna um double para a variável peso
+                // e verifica se o peso é válido. 
                 if (double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out peso))
                 {
+                    // Verifica se o valor é negativo considerando o zero
                     if (peso <= 0)
                     {
                         Console.WriteLine("\nNão existe pessoas com peso negativo!");
                     }
-                    if (peso > 595.0)
+                    if (peso > 595.0) // Verifica se o valor é superior ao valor do teste condicional
                     {
                         Console.WriteLine($"\nCom certeza você não tem {peso} kg!");
                         Console.WriteLine("O homem mais pesado do mundo - o mexicano Juan Pedro Franco - chegou a ter 595 quilos");
@@ -129,17 +141,25 @@ namespace DesafioBRQ
                 }
                 else
                 {
-                    Console.WriteLine("\nDados inválidos. Digite apenas números reais!");
+                    // Caso seja um valor negativo, letra ou espaço em branco será retornado ao usuário que digite apenas números naturais
+                    Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
+                    Console.WriteLine("\nDados inválidos. Digite apenas números naturais!");
                 }
-            } while (peso <= 0 || peso > 595.0);
+            } while (peso <= 0 || peso > 595.0); // O programa só sairá do laço quando a condição for atendida
             #endregion
 
+            // Variável que recebe o resultado da Função do Cálculo do IMC
+            // A mesma será usada para operações matemáticas em outras funções
             double totalIMC = CalculoIMC(peso, altura);
 
-            // Apresentação do Diagnóstico
+            // Apresentação do resultado do Diagnóstico
             Diagnostico(nome, sexo, idade, altura, peso, totalIMC);
         }
 
+
+        /// <summary>
+        /// Função que exibe a tela inicial do programa
+        /// </summary>
         static void Apresentacao()
         {
             Console.WriteLine("****************************************************************");
@@ -155,6 +175,15 @@ namespace DesafioBRQ
 
         }
 
+        /// <summary>
+        /// Função que exibe a tela de Diagóstico Prévio da pessoa com base no IMC 
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <param name="sexo"></param>
+        /// <param name="idade"></param>
+        /// <param name="altura"></param>
+        /// <param name="peso"></param>
+        /// <param name="totalIMC"></param>
         static void Diagnostico(string nome, string sexo, int idade, double altura, double peso, double totalIMC)
         {
             Console.Clear();
@@ -168,14 +197,21 @@ namespace DesafioBRQ
             Console.WriteLine($"Categoria: {Categoria(idade)}\n\n");
             Console.WriteLine($"IMC Desejável: {ClassificacaoIMC(totalIMC)}\n");
             Console.WriteLine($"Resultado IMC: {totalIMC.ToString("F2", CultureInfo.GetCultureInfo("pt-br"))}\n");
-            Console.WriteLine($"Riscos: {ClassificarRiscos(totalIMC)}\n");
+            Console.WriteLine($"Riscos: {ClassificacaoRiscos(totalIMC)}\n");
             Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");
-
-            Console.ReadKey();
+            Console.WriteLine("****************************************************************\n");
+            Console.WriteLine("Obrigado por utilizar o nosso sistema! A BRQ agradece pela preferência.\n");
+            Console.WriteLine("Pressione qualquer tecla para sair. Até mais!");
+            Console.ReadKey(); // Aguarda o usuário pressionar uma tecla.
 
         }
 
-        // Função que retorna a categoria que recebe por parâmetro a idade do usuário
+
+        /// <summary>
+        /// Função que recebe por parâmetro a "idade" da pessoa e classifica a sua categoria
+        /// </summary>
+        /// <param name="idadePessoa"></param>
+        /// <returns>Retorna uma string com a categoria da pessoa de acorco com a sua idade</returns>
         static string Categoria(int idadePessoa)
         {
 
@@ -200,7 +236,12 @@ namespace DesafioBRQ
             }
         }
 
-
+        /// <summary>
+        /// Recebe os parâmetros "peso" e "altura" da pessoa para realizar o cálculo do IMC
+        /// </summary>
+        /// <param name="pesoPessoa"></param>
+        /// <param name="alturaPessoa"></param>
+        /// <returns>Retorna o resultado do IMC da pessoa</returns>
         static double CalculoIMC(double pesoPessoa, double alturaPessoa)
         {
             // Função que calcula o IMC e que recebe por parâmetro o peso e a idade do usuário
@@ -209,7 +250,11 @@ namespace DesafioBRQ
         }
 
 
-
+        /// <summary>
+        /// Função que recebe por parâmetro o total do IMC da pessoa para verificar em que classificação ela se encontra.
+        /// </summary>
+        /// <param name="classificacaoIMC"></param>
+        /// <returns>Retorna a classificação da pessoa de acordo com o resultado do IMC</returns>
         static string ClassificacaoIMC(double classificacaoIMC)
         {
             // Função que retorna a classificação do IMC que recebe por parâmetro o total do IMC
@@ -240,9 +285,13 @@ namespace DesafioBRQ
             }
         }
 
-        static string ClassificarRiscos(double riscosIMC)
+        /// <summary>
+        /// Função que recebe por parâmetro o total do IMC da pessoa para verificar em que classificação de riscos ela se encontra.
+        /// </summary>
+        /// <param name="riscosIMC"></param>
+        /// <returns>Retorna uma string que classifica possíveis riscos à saúde da pessoa de acordo com o resultado do IMC</returns>
+        static string ClassificacaoRiscos(double riscosIMC)
         {
-            // Função que retorna a Classificação de Risco que recebe por parâmetro o total do IMC
 
             if (riscosIMC < 20)
             {
@@ -270,9 +319,13 @@ namespace DesafioBRQ
             }
         }
 
+        /// <summary>
+        /// Função que recebe por parâmetro o total do IMC da pessoa e verifica em qual risco a pessoa se encontra e calcula uma possível recomendação de acordo com o resultado do IMC.
+        /// </summary>
+        /// <param name="recomendacaoIMC"></param>
+        /// <returns>Retorna uma string com uma possível recomendação de acordo com o resultado do IMC da pessoa</returns>
         static string RecomendacaoInicial(double recomendacaoIMC)
         {
-            // Função que retorna a Recomendação Inicial que recebe por parâmetro o total do IMC
 
             if (recomendacaoIMC < 20)
             {
