@@ -10,7 +10,7 @@ O Programa de Emagrecimento Saudável é uma aplicação de console construída 
 A aplicação consiste em gerar um diagnóstico prévio para o programa de
 emagrecimento, conforme exemplo abaixo:<br><br>
 <p align="center">
-    <img width="500" src="media/assets.gif">
+    <img src="media/assets.gif">
 </p> <br><br>
 
 # O que é o IMC?<br>
