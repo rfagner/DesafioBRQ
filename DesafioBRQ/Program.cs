@@ -169,9 +169,7 @@ namespace DesafioBRQ
             Console.WriteLine("*                                                              *");
             Console.WriteLine("************    (IMC - Índice de Massa Corpórea)    ************");
             Console.WriteLine("****************************************************************\n");
-            Console.WriteLine("Para começar, vamos precisar de algumas informações.\n");
-            Console.WriteLine("Pode ficar tranquilo(a), trataremos os seus dados de acordo com a LGPD\n");
-            Console.WriteLine("Lei Geral de Proteção de Dados · Lei nº 13.853, de 8 de julho de 2019\n\n");
+            Console.WriteLine("Para começar, vamos precisar de algumas informações.\n");            
 
         }
 
@@ -201,8 +199,8 @@ namespace DesafioBRQ
             Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");
             Console.WriteLine("****************************************************************\n");
             Console.WriteLine("Obrigado por utilizar o nosso sistema! A BRQ agradece pela preferência.\n");
-            Console.WriteLine("Pressione qualquer tecla para sair. Até mais!");
-            Console.ReadKey(); // Aguarda o usuário pressionar uma tecla.
+            Console.WriteLine("Pressione uma tecla para sair. Até mais!");
+            Console.ReadKey(); // Aguarda o usuário pressionar uma tecla e encerra o programa.
 
         }
 
