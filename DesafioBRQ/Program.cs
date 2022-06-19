@@ -196,8 +196,7 @@ namespace DesafioBRQ
             Console.WriteLine($"IMC Desejável: {ClassificacaoIMC(totalIMC)}\n");
             Console.WriteLine($"Resultado IMC: {totalIMC.ToString("F2", CultureInfo.GetCultureInfo("pt-br"))}\n");
             Console.WriteLine($"Riscos: {ClassificacaoRiscos(totalIMC)}\n");
-            Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");
-            //Console.WriteLine("Pressione uma tecla para sair. Até mais!");
+            Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");            
             Console.WriteLine("***************************************************************************************************");
             Console.WriteLine("***************************************   Fim do Programa   ***************************************");
             Console.WriteLine("**********    Obrigado por utilizar o nosso sistema! A BRQ agradece pela preferência.    **********");
@@ -329,7 +328,7 @@ namespace DesafioBRQ
 
             if (recomendacaoIMC < 20)
             {
-                return "Inclua carboidratos simples em sua dieta, além de proteínas - indispensáveis para ganho de massa magra.\n Procure um profissional .";
+                return "Inclua carboidratos simples em sua dieta, além de proteínas - indispensáveis para \nganho de massa magra. Procure um profissional .";
             }
 
             else if (recomendacaoIMC >= 20 && recomendacaoIMC <= 24)
@@ -349,7 +348,7 @@ namespace DesafioBRQ
 
             else
             {
-                return "Procure com urgência o acompanhamento de um nutricionista para realizar reeducação alimentar, \num psicólogo e um médico especialista endócrino.";
+                return "Procure com urgência o acompanhamento de um nutricionista para realizar \nreeducação alimentar, um psicólogo e um médico especialista endócrino.";
             }
         }
 
