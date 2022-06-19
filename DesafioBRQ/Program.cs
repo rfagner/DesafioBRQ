@@ -169,7 +169,7 @@ namespace DesafioBRQ
             Console.WriteLine("*                                                              *");
             Console.WriteLine("************    (IMC - Índice de Massa Corpórea)    ************");
             Console.WriteLine("****************************************************************\n");
-            Console.WriteLine("Para começar, vamos precisar de algumas informações.\n");            
+            Console.WriteLine("Para começar, vamos precisar de algumas informações.\n");
 
         }
 
@@ -197,9 +197,11 @@ namespace DesafioBRQ
             Console.WriteLine($"Resultado IMC: {totalIMC.ToString("F2", CultureInfo.GetCultureInfo("pt-br"))}\n");
             Console.WriteLine($"Riscos: {ClassificacaoRiscos(totalIMC)}\n");
             Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");
-            Console.WriteLine("****************************************************************\n");
-            Console.WriteLine("Obrigado por utilizar o nosso sistema! A BRQ agradece pela preferência.\n");
-            Console.WriteLine("Pressione uma tecla para sair. Até mais!");
+            //Console.WriteLine("Pressione uma tecla para sair. Até mais!");
+            Console.WriteLine("***************************************************************************************************");
+            Console.WriteLine("***************************************   Fim do Programa   ***************************************");
+            Console.WriteLine("**********    Obrigado por utilizar o nosso sistema! A BRQ agradece pela preferência.    **********");
+            Console.WriteLine("***************************************************************************************************");
             Console.ReadKey(); // Aguarda o usuário pressionar uma tecla e encerra o programa.
 
         }
@@ -293,7 +295,7 @@ namespace DesafioBRQ
 
             if (riscosIMC < 20)
             {
-                return "Muitas complicações de saúde como doenças pulmonares e cardiovasculares podem estar\n associadas ao baixo peso.";
+                return "Muitas complicações de saúde como doenças pulmonares e cardiovasculares podem estar \nassociadas ao baixo peso.";
             }
 
             else if (riscosIMC >= 20 && riscosIMC <= 24)
