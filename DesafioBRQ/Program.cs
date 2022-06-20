@@ -26,7 +26,7 @@ namespace DesafioBRQ
 
 
                 // Solicita o nome do usuário
-                Console.Write("Digite o seu nome: ");
+                Console.Write("Digite o seu nome completo: ");
                 nome = Console.ReadLine();
 
                 // Validação que verifica se a string especificada é null ou consiste somente de espaço em branco
@@ -36,13 +36,13 @@ namespace DesafioBRQ
                     // Mensagem que será retornada ao usuário enquanto o teste condicional for igual a verdadeiro (true) 
                     Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
                     Console.WriteLine("\nEssa etapa é muito importante para te conhecermos e não pode ficar em branco!\n");
-                    Console.Write("\nPor favor, digite o seu nome: ");
+                    Console.Write("\nPor favor, digite o seu nome completo: ");
                     nome = Console.ReadLine();
                 }
 
 
                 // Solicita a informação do sexo da pessoa
-                Console.Write("\nQual é o seu sexo [M/F]: ");
+                Console.Write("\nInforme o seu sexo ('M' para Masculino ou 'F' para Feminino): ");
                 sexo = Console.ReadLine();
                 // Após receber o sexo da pessoa o teste condicional verifica se é um sexo válido.        
                 while (sexo.ToLower() != "m" || sexo.ToLower() != "f")
@@ -61,7 +61,7 @@ namespace DesafioBRQ
                     // Mensagem que será retornada ao usuário enquanto o teste condicional for igual a verdadeiro (true) 
                     Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
                     Console.WriteLine("\nDados inválidos. Apenas são aceitos os caracteres [M] para 'Masculino' ou [F] para 'Feminino'.");
-                    Console.Write("\nQual é o seu sexo [M/F]: ");
+                    Console.Write("\nPor favor, informe o seu sexo ('M' para Masculino ou 'F' para Feminino): ");
                     sexo = Console.ReadLine();
                 }
 
@@ -69,7 +69,7 @@ namespace DesafioBRQ
                 do
                 {
                     // Solicita a idade da pessoa e verifica se é um valor inteiro válido (positivo e sem casas decimais).
-                    Console.Write("\nDigite sua idade (Ex. 28): ");
+                    Console.Write("\nDigite a sua idade (Ex. 28): ");
                     if (int.TryParse(Console.ReadLine(), out idade))
                     {
                         // Verifica se o valor é negativo considerando o zero
@@ -88,7 +88,7 @@ namespace DesafioBRQ
                     {
                         // Mesagem que será retornada ao usuário caso os dados sejam inválidos
                         Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
-                        Console.WriteLine("\nDados inválidos! Digite apenas números naturais e sem casas decimais!");
+                        Console.WriteLine("\nDados inválidos! Digite apenas números naturais e sem casas decimais.");
                     }
 
                 } while (idade <= 0 || idade > 119); // O programa só sairá do laço quando a condição for atendida
@@ -99,7 +99,7 @@ namespace DesafioBRQ
                 {
                     // Solicita a altura da pessoa
 
-                    Console.Write("\nDigite a sua altura (Ex. 1,70): ");
+                    Console.Write("\nDigite a sua altura em metros (Ex. 1,70): ");
                     // Condição que verifica se o valor contém ponto ou vírgula e retorna um double para a variável altura
                     // e verifica se a altura é válida. 
                     if (double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out altura))
@@ -120,7 +120,7 @@ namespace DesafioBRQ
                     {
                         // Caso seja um valor negativo, letra ou espaço em branco será retornado ao usuário que digite apenas números naturais
                         Console.Clear(); // Para evitar que a tela fique poluída quando o usuário digitar dados inválidos
-                        Console.WriteLine("\nDigite apenas valores positivos e menores que 2,51 metros!");
+                        Console.WriteLine("\nDados inválidos! Digite apenas valores positivos e menores que 2,51 metros.");
                     }
                 } while (altura <= 0 || altura > 2.51); // O programa só sairá do laço quando a condição for atendida
 
@@ -128,7 +128,7 @@ namespace DesafioBRQ
                 do
                 {
                     // Solicita o peso do usuário
-                    Console.Write("\nDigite seu peso (Ex. 54,5): ");
+                    Console.Write("\nInforme o seu peso (Ex. 54,5): ");
                     // Condição que verifica se o valor contém ponto ou vírgula e retorna um double para a variável peso
                     // e verifica se o peso é válido. 
                     if (double.TryParse(Console.ReadLine().Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out peso))
@@ -225,6 +225,7 @@ namespace DesafioBRQ
             Console.WriteLine($"Classificação IMC: {ClassificacaoIMC(totalIMC)}\n");
             Console.WriteLine($"Riscos: {ClassificacaoRiscos(totalIMC)}\n");
             Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");
+            Console.WriteLine("\n***************************************************************************************************\n");
 
         }
 
