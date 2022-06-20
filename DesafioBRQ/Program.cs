@@ -179,8 +179,7 @@ namespace DesafioBRQ
             Console.WriteLine("\n***************************************************************************************************");
             Console.WriteLine("***************************************   Fim do Programa   ***************************************");
             Console.WriteLine("**********    Obrigado por utilizar o nosso sistema! A BRQ agradece pela preferência.    **********");
-            Console.WriteLine("***************************************************************************************************");
-            Console.ReadKey(); // Pressione uma tecla para sair
+            Console.WriteLine("***************************************************************************************************");            
         }
 
 
