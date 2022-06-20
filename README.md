@@ -3,6 +3,12 @@
 # Desafio IMC
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/rfagner/DesafioBRQ/blob/main/LICENSE) <br><br>
 
+![Badge em Desenvolvimento](https://img.shields.io/static/v1?label=STATUS&message=finalizado&color=GREEN&style=for-the-badge)
+<br><br>
+
+![GitHub Org's stars](https://img.shields.io/github/stars/rfagner?style=social)
+<br><br>
+
 # Sobre o projeto
 
 O Programa de Emagrecimento Saudável é uma aplicação de console construída durante o desafio da 1ª Fase do **Programa ENTRYPOINT .NET**, evento realizado pela:<br> [BRQ] (https://digital.brq.com/formacao-entry-point) <br><br><br>
