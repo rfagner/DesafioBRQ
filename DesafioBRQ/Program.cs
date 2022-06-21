@@ -22,7 +22,7 @@ namespace DesafioBRQ
                 Console.Clear(); // Caso a pessoa queira refazer o Diagnóstico a tela será limpa
 
                 // Chamada da função que apresenta o programa para o usuário
-                Apresentacao();
+                ApresentarPrograma();
 
 
                 // Solicita o nome do usuário
@@ -157,10 +157,10 @@ namespace DesafioBRQ
 
                 // Variável que recebe o resultado da Função do Cálculo do IMC
                 // A mesma será usada para operações matemáticas em outras funções
-                double totalIMC = CalculoIMC(peso, altura);
+                double totalIMC = CalcularIMC(peso, altura);
 
                 // Apresentação do resultado do Diagnóstico
-                Diagnostico(nome, sexo, idade, altura, peso, totalIMC);
+                ApresentarDiagnostico(nome, sexo, idade, altura, peso, totalIMC);
 
                 // Após o resultado do Diagnóstico a pessoa terá a opção de refazer o Diagnóstico
                 Console.Write("Deseja refazer o diagóstico? Digite [S] para refazer ou [N] para sair do programa: ");
@@ -186,7 +186,7 @@ namespace DesafioBRQ
         /// <summary>
         /// Função que exibe a tela inicial do programa
         /// </summary>
-        static void Apresentacao()
+        static void ApresentarPrograma()
         {
             Console.WriteLine("****************************************************************");
             Console.WriteLine("************   Programa de Emagrecimento Saudável   ************");
@@ -208,7 +208,7 @@ namespace DesafioBRQ
         /// <param name="altura"></param>
         /// <param name="peso"></param>
         /// <param name="totalIMC"></param>
-        static void Diagnostico(string nome, string sexo, int idade, double altura, double peso, double totalIMC)
+        static void ApresentarDiagnostico(string nome, string sexo, int idade, double altura, double peso, double totalIMC)
         {
             Console.Clear();
             Console.WriteLine("");
@@ -218,12 +218,12 @@ namespace DesafioBRQ
             Console.WriteLine($"Idade: {idade}");
             Console.WriteLine($"Altura: {altura.ToString("F2")}");
             Console.WriteLine($"Peso: {peso}");
-            Console.WriteLine($"Categoria: {Categoria(idade)}\n\n");
+            Console.WriteLine($"Categoria: {ClassificarCategoria(idade)}\n\n");
             Console.WriteLine("IMC Desejável: entre 20 e 24\n");
             Console.WriteLine($"Resultado IMC: {totalIMC.ToString("F2", CultureInfo.GetCultureInfo("pt-br"))}\n");
-            Console.WriteLine($"Classificação IMC: {ClassificacaoIMC(totalIMC)}\n");
-            Console.WriteLine($"Riscos: {ClassificacaoRiscos(totalIMC)}\n");
-            Console.WriteLine($"Recomendação inicial: {RecomendacaoInicial(totalIMC)}\n");
+            Console.WriteLine($"Classificação IMC: {ClassificacarIMC(totalIMC)}\n");
+            Console.WriteLine($"Riscos: {ClassificacarRiscos(totalIMC)}\n");
+            Console.WriteLine($"Recomendação inicial: {ClassificarRecomendacao(totalIMC)}\n");
             Console.WriteLine("\n***************************************************************************************************\n");
 
         }
@@ -234,7 +234,7 @@ namespace DesafioBRQ
         /// </summary>
         /// <param name="idadePessoa"></param>
         /// <returns>Retorna uma string com a categoria da pessoa de acorco com a sua idade</returns>
-        static string Categoria(int idadePessoa)
+        static string ClassificarCategoria(int idadePessoa)
         {
 
             if (idadePessoa < 12)
@@ -264,7 +264,7 @@ namespace DesafioBRQ
         /// <param name="pesoPessoa"></param>
         /// <param name="alturaPessoa"></param>
         /// <returns>Retorna o resultado do IMC da pessoa</returns>
-        static double CalculoIMC(double pesoPessoa, double alturaPessoa)
+        static double CalcularIMC(double pesoPessoa, double alturaPessoa)
         {
             // Função que calcula o IMC e que recebe por parâmetro o peso e a idade do usuário
             double resultadoIMC = (pesoPessoa / (alturaPessoa * alturaPessoa));
@@ -277,7 +277,7 @@ namespace DesafioBRQ
         /// </summary>
         /// <param name="classificacaoIMC"></param>
         /// <returns>Retorna a classificação da pessoa de acordo com o resultado do IMC</returns>
-        static string ClassificacaoIMC(double classificacaoIMC)
+        static string ClassificacarIMC(double classificacaoIMC)
         {
             // Função que retorna a classificação do IMC que recebe por parâmetro o total do IMC
 
@@ -312,7 +312,7 @@ namespace DesafioBRQ
         /// </summary>
         /// <param name="riscosIMC"></param>
         /// <returns>Retorna uma string que classifica possíveis riscos à saúde da pessoa de acordo com o resultado do IMC</returns>
-        static string ClassificacaoRiscos(double riscosIMC)
+        static string ClassificacarRiscos(double riscosIMC)
         {
 
             if (riscosIMC < 20)
@@ -346,7 +346,7 @@ namespace DesafioBRQ
         /// </summary>
         /// <param name="recomendacaoIMC"></param>
         /// <returns>Retorna uma string com uma possível recomendação de acordo com o resultado do IMC da pessoa</returns>
-        static string RecomendacaoInicial(double recomendacaoIMC)
+        static string ClassificarRecomendacao(double recomendacaoIMC)
         {
 
             if (recomendacaoIMC < 20)
